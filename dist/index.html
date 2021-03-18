@@ -48,13 +48,16 @@
         <button class="button is-danger" id="data-delete-list-button">Delete this project</button>
       </section>
       <section class="section column tasks-container">
-        <div class="container mt-6 pl-6 box">
-          <h2 class="mt-6 subtitle has-text-weight-bold pt-4">Tasks</h2>
+        <div class="container mt-6 pl-6 box" id="data-list-display-container">
+          <h2 class="mt-6 subtitle has-text-weight-bold pt-4" id="data-list-title">Example project</h2>
           <hr />
-          <ul class="pl-4">
-            <li class="box">
-              <div>
-                <p>Task 1</p>
+          <ul class="pl-4" >
+            <li class="box" id="data-tasks">
+              <div class="task"> 
+                <label class="checkbox">
+                  <input type="checkbox">
+                  Remember me
+                </label>
               </div>
             </li>
             <li class="box">Task 2</li>

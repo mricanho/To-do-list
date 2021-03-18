@@ -12,30 +12,35 @@
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-end">
       <a class="navbar-item" href="#">
-        <img src="./assets/todo.png" alt="to-do logo" height="100">
+        <img src="./assets/images/todo.png" alt="to-do logo" height="100">
       </a>
     </div>
   </nav>
-  <div class="container columns">
-    <section class="section column is-one-third mt-6 ml-6">
-      <div class="container">
-        <h1 class="title">
-          Projects
+  <div class="g-container columns m-0">
+    <section class="section column is-one-third project-container pt-6 pl-6">
+      <div class="container pt-6">
+        <h1 class="title mt-6 pt-6">
+          My Projects
         </h1>
+        <hr>
         <ul>
-          <li></li>
-          <li></li>
+          <li class="subtitle">Default project 1</li>
+          <li class="subtitle">Default project 2</li>
         </ul>
-        <p class="subtitle">
-          My first website with <strong>Bulma</strong>!
-        </p>
       </div>
     </section>
-    <div class="section is-two-thirds column mt-5 pl-0">
-      <h2>Nope</h2>
-    </div>
+    <section class="section column tasks-container">
+      <div class="container mt-6 pl-6 box">
+        <h2 class="mt-6 subtitle has-text-weight-bold pt-4">Tasks</h2>
+        <hr>
+        <ul class="pl-4">
+          <li class="box">Task 1</li>
+          <li class="box">Task 2</li>
+          <li class="box">Task 3</li>
+        </ul>
+      </div>
+    </section>
   </div>
-  <div id="content"></div>
 <script src="main.js"></script>
 </body>
 </html>

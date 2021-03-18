@@ -2,22 +2,25 @@ const listContainer = document.getElementById("data-lists");
 const newListForm = document.getElementById("data-new-list-form");
 const newListInput = document.getElementById("data-new-list-input");
 const deleteListButton = document.getElementById("data-delete-list-button");
-const listDisplayContainer = document.getElementById("data-list-display-container");
+const listDisplayContainer = document.getElementById(
+  "data-list-display-container"
+);
 const listTitleElemnt = document.getElementById("data-list-title");
 const tasksContainer = document.getElementById("data-tasks");
+const taskTemplate = document.getElementById("task-template");
 
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
-deleteListButton.addEventListener("click", e => {
-  lists = lists.filter(list => list.id !== selectedListId)
-  selectedListId = null
-  saveAndRender()
-})
+deleteListButton.addEventListener("click", (e) => {
+  lists = lists.filter((list) => list.id !== selectedListId);
+  selectedListId = null;
+  saveAndRender();
+});
 
-listContainer.addEventListener("click", e => {
+listContainer.addEventListener("click", (e) => {
   if (e.target.tagName.toLowerCase() === "li") {
     selectedListId = e.target.dataset.listId;
     saveAndRender();
@@ -34,10 +37,12 @@ newListForm.addEventListener("submit", (e) => {
   saveAndRender();
 });
 
-
-
 function createList(name) {
-  return { id: Date.now().toString(), name: name, tasks: [] };
+  return {
+    id: Date.now().toString(),
+    name: name,
+    tasks: [],
+  };
 }
 
 function saveAndRender() {
@@ -54,25 +59,43 @@ function render() {
   clearElement(listContainer);
   renderLists();
 
-  const selectedList = lists.find(list => list.id === selectedListId);
+  const selectedList = lists.find((list) => list.id === selectedListId);
   if (selectedListId == null) {
     listDisplayContainer.style.display = "none";
   } else {
     listDisplayContainer.style.display = "";
     listTitleElemnt.innerText = selectedList.name;
+    clearElement(tasksContainer);
+    renderTasks(selectedList);
   }
+}
+
+function renderTasks(selectedList) {
+  selectedList.tasks.forEach((task) => {
+    const taskElement = document.importNode(taskTemplate.content, true);
+    const checkbox = taskElement.querySelector("input");
+    checkbox.id = task.id;
+    checkbox.checked = task.complete;
+    const label = taskElement.querySelector("label");
+    label.htmlfor = task.id;
+    label.append(task.name);
+    tasksContainer.appendChild(taskElement);
+  });
 }
 
 function renderLists() {
   lists.forEach((list) => {
     const listElement = document.createElement("li");
     listElement.dataset.listId = list.id;
-    listElement.setAttribute("class", "subtitle ml-3 is-justify-content-space-between");
+    listElement.setAttribute(
+      "class",
+      "subtitle ml-3 is-justify-content-space-between"
+    );
     listElement.innerText = list.name;
     if (list.id === selectedListId) {
       listElement.classList.add("active-list");
     }
-    listContainer.appendChild(listElement);    
+    listContainer.appendChild(listElement);
   });
 }
 

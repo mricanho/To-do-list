@@ -45,27 +45,35 @@
             <button class="button is-danger">+</button>
           </div>
         </form>
-        <button class="button is-danger" id="data-delete-list-button">Delete this project</button>
+        <button class="button is-danger" id="data-delete-list-button">
+          Delete this project
+        </button>
       </section>
       <section class="section column tasks-container">
         <div class="container mt-6 pl-6 box" id="data-list-display-container">
-          <h2 class="mt-6 subtitle has-text-weight-bold pt-4" id="data-list-title">Example project</h2>
+          <h2
+            class="mt-6 subtitle has-text-weight-bold pt-4"
+            id="data-list-title"
+          >
+            Example project
+          </h2>
           <hr />
-          <ul class="pl-4" >
-            <li class="box" id="data-tasks">
-              <div class="task"> 
-                <label class="checkbox">
-                  <input type="checkbox">
-                  Remember me
-                </label>
-              </div>
-            </li>
-            <li class="box">Task 2</li>
-            <li class="box">Task 3</li>
+          <ul class="pl-4">
+            <li class="box" id="data-tasks"></li>
           </ul>
+          <input class="input" type="text" placeholder="new-task" />
         </div>
       </section>
     </div>
+
+    <template id="task-template">
+      <div class="task">
+        <input type="checkbox" />
+        <label>
+          <span class="custom-checkbox"></span>
+        </label>
+      </div>
+    </template>
     <script src="main.js"></script>
   </body>
 </html>

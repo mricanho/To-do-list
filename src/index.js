@@ -54,11 +54,12 @@ function render() {
   clearElement(listContainer);
   renderLists();
 
+  const selectedList = lists.find(list => list.id === selectedListId);
   if (selectedListId == null) {
     listDisplayContainer.style.display = "none";
   } else {
     listDisplayContainer.style.display = "";
-
+    listTitleElemnt.innerText = selectedList.name;
   }
 }
 

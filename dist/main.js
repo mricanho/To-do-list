@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\n\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+eval("const listContainer = document.getElementById('data-lists');\nconst newListForm = document.getElementById('data-new-list-form');\nconst newListInput= document.getElementById('data-new-list-input');\n\nlet lists = [{id: 1, name: 'name'}, {id: 2, name: 'name'}];\n\nfunction render() {\n  clearElement(listContainer);\n  lists.forEach(list => {\n    const listElement = document.createElement('li')\n    listElement.dataset.listId = list.id\n    listElement.classList.add(\"subtitle\")\n    listElement.innerText = list.name\n    listContainer.appendChild(listElement)\n  })\n}\n\nfunction clearElement(element) {\n  while (element.firstChild) {\n    element.removeChild(element.firstChild)\n  }\n}\n\nrender();\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
 
 /***/ })
 

@@ -1,13 +1,20 @@
 const listContainer = document.getElementById("data-lists");
 const newListForm = document.getElementById("data-new-list-form");
 const newListInput = document.getElementById("data-new-list-input");
+const deleteListButton = document.getElementById("data-delete-list-button");
 
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
-listContainer.addEventListener("click", (e) => {
+deleteListButton.addEventListener("click", e => {
+  lists = lists.filter(list => list.id !== selectedListId)
+  selectedListId = null
+  saveAndRender()
+})
+
+listContainer.addEventListener("click", e => {
   if (e.target.tagName.toLowerCase() === "li") {
     selectedListId = e.target.dataset.listId;
     saveAndRender();
@@ -23,6 +30,8 @@ newListForm.addEventListener("submit", (e) => {
   lists.push(list);
   saveAndRender();
 });
+
+
 
 function createList(name) {
   return { id: Date.now().toString(), name: name, tasks: [] };
@@ -49,9 +58,10 @@ function render() {
       listElement.classList.add("active-list");
     }
     listContainer.appendChild(listElement);
-    const deleteButton = document.createElement("button");
-    deleteButton.setAttribute("class", "delete is-small");
-    listElement.appendChild(deleteButton);
+    // const deleteButton = document.createElement("button");
+    // deleteButton.setAttribute("class", "delete is-small");
+    // deleteButton.setAttribute("id", "data-delete-list-button");
+    // listElement.appendChild(deleteButton);
     
   });
 }

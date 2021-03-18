@@ -43,12 +43,16 @@ function render() {
   lists.forEach((list) => {
     const listElement = document.createElement("li");
     listElement.dataset.listId = list.id;
-    listElement.classList.add("subtitle");
+    listElement.setAttribute("class", "subtitle ml-3 is-justify-content-space-between");
     listElement.innerText = list.name;
     if (list.id === selectedListId) {
       listElement.classList.add("active-list");
     }
     listContainer.appendChild(listElement);
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "delete is-small");
+    listElement.appendChild(deleteButton);
+    
   });
 }
 

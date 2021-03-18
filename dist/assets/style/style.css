@@ -14,3 +14,8 @@
 .active-list {
   font-weight: 800;
 }
+
+.delete {
+  vertical-align: middle;
+  margin-right: 400px;
+}

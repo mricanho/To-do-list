@@ -1,8 +1,16 @@
 .project-container {
-  background-color: #F6D4CC;
+  background-color: #f6d4cc;
   height: 100vh;
 }
 
 .tasks-container {
-  background-color: #E1684E;
+  background-color: #e1684e;
+}
+
+.subtitle {
+  cursor: pointer;
+}
+
+.active-list {
+  font-weight: 800;
 }

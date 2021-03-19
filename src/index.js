@@ -8,8 +8,8 @@ const listDisplayContainer = document.getElementById(
 const listTitleElemnt = document.getElementById("data-list-title");
 const tasksContainer = document.getElementById("data-tasks");
 const taskTemplate = document.getElementById("task-template");
-const newTaskForm = document.querySelector("data-new-task-form");
-const newTaskInput = document.querySelector("data-new-task-input");
+const newTaskForm = document.querySelector("[data-new-task-form]");
+const newTaskInput = document.querySelector("[data-new-task-input]");
 
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";

@@ -61,10 +61,10 @@
           <ul class="pl-4">
             <li class="box" id="data-tasks"></li>
           </ul>
-          <form class="field has-addons mt-4" id="data-new-task-form" action="">
+          <form class="field has-addons mt-4" action="" data-new-task-form>
             <div class="control">
               <input
-                id="data-new-task-input"
+                data-new-task-input
                 class="input"
                 type="text"
                 placeholder="Add a new task"
@@ -77,7 +77,6 @@
         </div>
       </section>
     </div>
-
     <template id="task-template">
       <div class="task">
         <input type="checkbox" />

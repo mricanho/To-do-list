@@ -58,10 +58,10 @@
             Example project
           </h2>
           <hr />
-          <ul class="pl-4">
-            <li class="box" id="data-tasks"></li>
+          <ul class="">
+            <li class="" id="data-tasks"></li>
           </ul>
-          <form class="field has-addons mt-4" action="" data-new-task-form>
+          <form class="field has-addons mt-6" action="" data-new-task-form>
             <div class="control">
               <input
                 data-new-task-input
@@ -78,11 +78,23 @@
       </section>
     </div>
     <template id="task-template">
-      <div class="task">
-        <input type="checkbox" />
-        <label>
-          <span class="custom-checkbox"></span>
-        </label>
+      <div class="card task mb-6">
+        <header class="card-header">
+          <p class="card-header-title">
+            <input type="checkbox" class="mr-2"/>
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content is-flex-direction-row">
+            <p>Description is here</p>         
+            <time datetime="2016-1-1">Date is here</time>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item a-card">Low Priority</a>
+          <a href="#" class="card-footer-item a-card">Medium Priority</a>
+          <a href="#" class="card-footer-item a-card">Critical Priority</a>
+        </footer>
       </div>
     </template>
     <script src="main.js"></script>

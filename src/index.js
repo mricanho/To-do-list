@@ -97,7 +97,7 @@ function renderTasks(selectedList) {
     const checkbox = taskElement.querySelector("input");
     checkbox.id = task.id;
     checkbox.checked = task.complete;
-    const label = taskElement.querySelector("label");
+    const label = taskElement.querySelector("p");
     label.htmlfor = task.id;
     label.append(task.name);
     tasksContainer.appendChild(taskElement);

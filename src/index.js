@@ -58,10 +58,12 @@ function createList(name) {
   };
 }
 
-function createTask(name) {
+function createTask(name, description, date) {
   return {
     id: Date.now().toString(),
     name: name,
+    // description: description,
+    // date: date,
     complete: false,
   };
 }
@@ -96,10 +98,14 @@ function renderTasks(selectedList) {
     const taskElement = document.importNode(taskTemplate.content, true);
     const checkbox = taskElement.querySelector("input");
     checkbox.id = task.id;
-    checkbox.checked = task.complete;
-    const label = taskElement.querySelector("p");
-    label.htmlfor = task.id;
-    label.append(task.name);
+    // checkbox.checked = task.complete;
+    const contentTask = taskElement.querySelector("p");
+    contentTask.htmlfor = task.id;
+    contentTask.append(task.name);
+    // const descriptionTask = taskElement.getElementById("description");
+    // descriptionTask.append(task.description);
+    // const dateTask = taskElement.getElementById("date-task");
+    // dateTask.append(task.date);
     tasksContainer.appendChild(taskElement);
   });
 }

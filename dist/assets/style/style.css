@@ -19,3 +19,12 @@
   vertical-align: middle;
   margin-right: 400px;
 }
+
+.input1, .button-container {
+  width: 100%;
+  display: flex;
+}
+
+.dbutton {
+  margin-left: auto;
+}

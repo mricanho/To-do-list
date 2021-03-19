@@ -11,10 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="assets/style/style.css" />
-    <script
-      src="https://kit.fontawesome.com/61f458d584.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/61f458d584.js" crossorigin="anonymous"></script>
     <title>To-Do List</title>
   </head>
   <body>
@@ -33,7 +30,7 @@
           <ul id="data-lists"></ul>
         </div>
         <form class="field has-addons mt-4" id="data-new-list-form" action="">
-          <div class="control">
+          <div class="control input1">
             <input
               class="input"
               type="text"
@@ -45,9 +42,12 @@
             <button class="button is-danger">+</button>
           </div>
         </form>
-        <button class="button is-danger" id="data-delete-list-button">
-          Delete this project
-        </button>
+        <div class="button-container is-justify-content-flex-end">
+          <button class="button is-danger dbutton mt-5  is-small is-inverted" id="data-delete-list-button">
+            Delete this project
+          </button>
+        </div>
+        
       </section>
       <section class="section column tasks-container">
         <div class="container mt-6 pl-6 box" id="data-list-display-container">

@@ -3,6 +3,16 @@
   height: 100vh;
 }
 
+.header-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.newtask-b {
+  width: 30%;
+}
+
 .tasks-container {
   background-color: #e1684e;
 }

@@ -1,5 +1,6 @@
 body {
   background-color: #f6d4cc;
+  height: 100vh;
 }
 
 .header-task {
@@ -14,6 +15,7 @@ body {
 
 .tasks-container {
   background-color: #e1684e;
+  height: 100%;
 }
 
 .subtitle {

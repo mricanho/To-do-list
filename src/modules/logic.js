@@ -7,6 +7,7 @@ const deleteListButton = document.getElementById("data-delete-list-button");
 const listDisplayContainer = document.getElementById(
   "data-list-display-container"
 );
+
 const listTitleElemnt = document.getElementById("data-list-title");
 const tasksContainer = document.getElementById("data-tasks");
 const taskTemplate = document.getElementById("task-template");
@@ -18,13 +19,14 @@ const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
-const openTaskForm = document.getElementById("newtask-b");
 
-deleteListButton.addEventListener("click", (e) => {
+deleteListButton.addEventListener("click", deleteProject);
+
+function deleteProject(e) {
   lists = lists.filter((list) => list.id !== selectedListId);
   selectedListId = null;
   saveAndRender();
-});
+}
 
 listContainer.addEventListener("click", (e) => {
   if (e.target.tagName.toLowerCase() === "li") {
@@ -54,7 +56,7 @@ newTaskForm.addEventListener("submit", (e) => {
   saveAndRender();
 });
 
-openTaskForm.addEventListener("click", renderTaskForm());
+
 
 function createList(name) {
   return {
@@ -97,10 +99,6 @@ export function render() {
     clearElement(tasksContainer);
     renderTasks(selectedList);
   }
-}
-
-function renderTaskForm() {
-
 }
 
 function renderTasks(selectedList) {

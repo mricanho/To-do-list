@@ -39,7 +39,7 @@
             />
           </div>
           <div class="control">
-            <button class="button is-danger">+</button>
+            <button class="button is-danger" type="button">+</button>
           </div>
         </form>
         <div class="button-container is-justify-content-flex-end">
@@ -47,8 +47,26 @@
             Delete this project
           </button>
         </div>
-        
       </section>
+
+      <div class="modal" id="launch-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="e.g Alex Smith">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close" id="close-modal"></button>
+      </div>
       <section class="section column tasks-container">
         <div class="container mt-6 pl-6 box" id="data-list-display-container">
           <div class="header-task ">
@@ -56,8 +74,7 @@
               Example project
             </h2>
             <button class="button is-danger newtask-b" id="newtask-b">Add New Task</button>
-          </div>
-          
+          </div>          
           <hr />
           <ul class="">
             <li class="" id="data-tasks"></li>
@@ -72,7 +89,7 @@
               />
             </div>
             <div class="control">
-              <button class="button is-danger">+</button>
+              <button class="button is-danger" type="button">+</button>
             </div>
           </form>
         </div>
@@ -98,6 +115,27 @@
         </footer>
       </div>
     </template>
+    <!-- <template id="form-task">
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="e.g Alex Smith">
+            </div>
+          </div>
+          
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </template> -->
     <script src="main.js"></script>
   </body>
 </html>

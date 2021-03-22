@@ -4,13 +4,19 @@ const displayModal = document.getElementById("launch-modal");
 const closeModal = document.querySelector("#close-modal");
 const openTaskForm = document.getElementById("newtask-b");
 const deleteListButton = document.getElementById("data-delete-list-button");
+const cancelForm = document.getElementById("cancel-form");
 
 function listeners() {
+
   openTaskForm.addEventListener("click", () => {
     displayModal.classList.add('is-active');
   });
 
   closeModal.addEventListener("click", () => {
+    displayModal.classList.remove('is-active');
+  });
+
+  cancelForm.addEventListener("click", () => {
     displayModal.classList.remove('is-active');
   });
 

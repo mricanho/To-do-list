@@ -8,8 +8,8 @@ const listDisplayContainer = document.getElementById("data-list-display-containe
 const listTitleElemnt = document.getElementById("data-list-title");
 const tasksContainer = document.getElementById("data-tasks");
 const taskTemplate = document.getElementById("task-template");
-const newTaskForm = document.querySelector("[data-new-task-form]");
-const newTaskInput = document.querySelector("[data-new-task-input]");
+// const newTaskForm = document.querySelector("[data-new-task-form]");
+// const newTaskInput = document.querySelector("[data-new-task-input]");
 
 const displayModal = document.getElementById("launch-modal");
 const taskForm = document.querySelector("[data-submit-task]");
@@ -21,7 +21,6 @@ const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-
 
 function deleteProject(e) {
   lists = lists.filter((list) => list.id !== selectedListId);
@@ -122,10 +121,10 @@ function renderTasks(selectedList) {
     checkbox.id = task.id;
     // checkbox.checked = task.complete;
     const contentTask = taskElement.querySelector("p");
+    const descTask = taskElement.getElementById("description");
     contentTask.htmlfor = task.id;
     contentTask.append(task.name);
-    // const descriptionTask = taskElement.getElementById("description");
-    // descriptionTask.append(task.description);
+    descTask.append(task.description);
     // const dateTask = taskElement.getElementById("date-task");
     // dateTask.append(task.date);
     tasksContainer.appendChild(taskElement);

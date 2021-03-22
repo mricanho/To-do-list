@@ -1,4 +1,4 @@
-import { deleteProject, listContainer, selectListContainer } from './logic'
+import { deleteProject, listContainer, selectListContainer, taskForm, formLogic } from './logic'
 
 const displayModal = document.getElementById("launch-modal");
 const closeModal = document.querySelector("#close-modal");
@@ -23,6 +23,10 @@ function listeners() {
   deleteListButton.addEventListener("click", deleteProject);
 
   listContainer.addEventListener("click", selectListContainer);
+
+  taskForm.addEventListener("click", formLogic);
+
+  taskForm.addEventListener("submit", formLogic);
 }
 
 export { listeners };

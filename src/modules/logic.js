@@ -11,6 +11,12 @@ const taskTemplate = document.getElementById("task-template");
 const newTaskForm = document.querySelector("[data-new-task-form]");
 const newTaskInput = document.querySelector("[data-new-task-input]");
 
+const displayModal = document.getElementById("launch-modal");
+const taskForm = document.querySelector("[data-submit-task]");
+const titleTask = document.querySelector("[data-title-task]");
+const descriptionTask = document.querySelector("[data-description-task]");
+const dateTask = document.querySelector("[data-date-task]");
+
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
@@ -30,6 +36,21 @@ function selectListContainer(e) {
   };
 }
 
+function formLogic(e) {
+  e.preventDefault();
+  const taskTitle = titleTask.value;
+  if (taskTitle == null || taskTitle === "") return;
+  const taskDescription = descriptionTask.value;
+  if (taskDescription == null || taskDescription === "") return;
+  const task = createTask(taskTitle, taskDescription);
+  titleTask.value = null;
+  descriptionTask.value = null;
+  displayModal.classList.remove('is-active');
+  const selectedList = lists.find((list) => list.id === selectedListId);
+  selectedList.tasks.push(task);
+  saveAndRender();
+}
+
 newListForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const listName = newListInput.value;
@@ -40,16 +61,16 @@ newListForm.addEventListener("submit", (e) => {
   saveAndRender();
 });
 
-newTaskForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const taskName = newTaskInput.value;
-  if (taskName == null || taskName === "") return;
-  const task = createTask(taskName);
-  newTaskInput.value = null;
-  const selectedList = lists.find((list) => list.id === selectedListId);
-  selectedList.tasks.push(task);
-  saveAndRender();
-});
+// newTaskForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const taskName = newTaskInput.value;
+//   if (taskName == null || taskName === "") return;
+//   const task = createTask(taskName);
+//   newTaskInput.value = null;
+//   const selectedList = lists.find((list) => list.id === selectedListId);
+//   selectedList.tasks.push(task);
+//   saveAndRender();
+// });
 
 function createList(name) {
   return {
@@ -59,11 +80,11 @@ function createList(name) {
   };
 }
 
-function createTask(name, description, date) {
+function createTask(name, description) {
   return {
     id: Date.now().toString(),
     name: name,
-    // description: description,
+    description: description,
     // date: date,
     complete: false,
   };
@@ -133,5 +154,5 @@ function clearElement(element) {
   }
 }
 
-export { render, selectListContainer, deleteProject, listContainer }
+export { render, selectListContainer, deleteProject, listContainer, formLogic, taskForm }
 

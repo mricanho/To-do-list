@@ -43,3 +43,7 @@ body {
 .a-card {
   color: #e1684e;
 }
+
+.form-button {
+  width: 20vh;
+}

@@ -1,16 +1,10 @@
 
- 
 const listContainer = document.getElementById("data-lists");
-const newListForm = document.getElementById("data-new-list-form");
 const newListInput = document.getElementById("data-new-list-input");
 const listDisplayContainer = document.getElementById("data-list-display-container");
-
 const listTitleElemnt = document.getElementById("data-list-title");
 const tasksContainer = document.getElementById("data-tasks");
 const taskTemplate = document.getElementById("task-template");
-// const newTaskForm = document.querySelector("[data-new-task-form]");
-// const newTaskInput = document.querySelector("[data-new-task-input]");
-
 const displayModal = document.getElementById("launch-modal");
 const taskForm = document.querySelector("[data-submit-task]");
 const titleTask = document.querySelector("[data-title-task]");
@@ -56,7 +50,7 @@ function formLogic(e) {
   saveAndRender();
 }
 
-newListForm.addEventListener("submit", (e) => {
+function submitList(e) {
   e.preventDefault();
   const listName = newListInput.value;
   if (listName == null || listName === "") return;
@@ -64,7 +58,7 @@ newListForm.addEventListener("submit", (e) => {
   newListInput.value = null;
   lists.push(list);
   saveAndRender();
-});
+}
 
 function createList(name) {
   return {
@@ -148,5 +142,5 @@ function clearElement(element) {
   }
 }
 
-export { render, selectListContainer, deleteProject, listContainer, formLogic, taskForm }
+export { render, selectListContainer, deleteProject, listContainer, formLogic, taskForm, submitList }
 

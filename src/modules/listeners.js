@@ -1,10 +1,11 @@
-import { deleteProject, listContainer, selectListContainer, taskForm, formLogic } from './logic'
+import { deleteProject, listContainer, selectListContainer, taskForm, formLogic, submitList } from './logic'
 
 const displayModal = document.getElementById("launch-modal");
 const closeModal = document.querySelector("#close-modal");
 const openTaskForm = document.getElementById("newtask-b");
 const deleteListButton = document.getElementById("data-delete-list-button");
 const cancelForm = document.getElementById("cancel-form");
+const newListForm = document.getElementById("data-new-list-form");
 
 function listeners() {
 
@@ -33,6 +34,8 @@ function listeners() {
   taskForm.addEventListener("click", formLogic);
 
   taskForm.addEventListener("submit", formLogic);
+
+  newListForm.addEventListener("submit", submitList);
 }
 
 export { listeners };

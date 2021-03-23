@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/mricanho/To-do-list#readme",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "webpack": "^5.26.3",
     "webpack-cli": "^4.5.0"
   }

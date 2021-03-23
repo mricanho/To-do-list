@@ -16,6 +16,9 @@ const taskForm = document.querySelector("[data-submit-task]");
 const titleTask = document.querySelector("[data-title-task]");
 const descriptionTask = document.querySelector("[data-description-task]");
 const dateTask = document.querySelector("[data-date-task]");
+const lowTask = document.querySelector("[data-low]");
+const mediumTask = document.querySelector("[data-medium]");
+const criticalTask = document.querySelector("[data-critical]");
 
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
@@ -41,9 +44,12 @@ function formLogic(e) {
   if (taskTitle == null || taskTitle === "") return;
   const taskDescription = descriptionTask.value;
   if (taskDescription == null || taskDescription === "") return;
-  const task = createTask(taskTitle, taskDescription);
+  const taskDate = dateTask.value;
+  if (taskDate == null || taskDate === "") return;
+  const task = createTask(taskTitle, taskDescription, taskDate);
   titleTask.value = null;
   descriptionTask.value = null;
+  dateTask.value = null;
   displayModal.classList.remove('is-active');
   const selectedList = lists.find((list) => list.id === selectedListId);
   selectedList.tasks.push(task);
@@ -60,17 +66,6 @@ newListForm.addEventListener("submit", (e) => {
   saveAndRender();
 });
 
-// newTaskForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   const taskName = newTaskInput.value;
-//   if (taskName == null || taskName === "") return;
-//   const task = createTask(taskName);
-//   newTaskInput.value = null;
-//   const selectedList = lists.find((list) => list.id === selectedListId);
-//   selectedList.tasks.push(task);
-//   saveAndRender();
-// });
-
 function createList(name) {
   return {
     id: Date.now().toString(),
@@ -79,12 +74,12 @@ function createList(name) {
   };
 }
 
-function createTask(name, description) {
+function createTask(name, description, date) {
   return {
     id: Date.now().toString(),
     name: name,
     description: description,
-    // date: date,
+    date: date,
     complete: false,
   };
 }
@@ -122,11 +117,11 @@ function renderTasks(selectedList) {
     // checkbox.checked = task.complete;
     const contentTask = taskElement.querySelector("p");
     const descTask = taskElement.getElementById("description");
+    const dateTask = taskElement.getElementById("date-task");
     contentTask.htmlfor = task.id;
     contentTask.append(task.name);
     descTask.append(task.description);
-    // const dateTask = taskElement.getElementById("date-task");
-    // dateTask.append(task.date);
+    dateTask.append(task.date);
     tasksContainer.appendChild(taskElement);
   });
 }

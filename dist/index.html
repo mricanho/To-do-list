@@ -60,7 +60,7 @@
           <div class="field">
             <label class="label">Description</label>
             <div class="control">
-              <input data-description-task class="input" type="text" placeholder="email" placeholder="e.g. I need to use the leash this time and took the avenue" required>
+              <input data-description-task class="input" type="text" placeholder="e.g. I need to use the leash this time and took the avenue" required>
             </div>
           </div>
           <div class="field">
@@ -73,15 +73,15 @@
             <label class="label">Priority</label>
             <div class="priority-container">
               <label class="radio mr-6">
-                <input type="radio" name="rsvp" checked="checked" class="mr-2">
+                <input data-low type="radio" name="rsvp" checked="checked" class="mr-2">
                 Low Priority
               </label>
               <label class="radio mr-6">
-                <input type="radio" name="rsvp" class="mr-2">
+                <input data-medium type="radio" name="rsvp" class="mr-2">
                 Medium Priority
               </label>
               <label class="radio">
-                <input type="radio" name="rsvp" class="mr-2">
+                <input data-critical type="radio" name="rsvp" class="mr-2">
                 Critical Priority
               </label>
             </div>
@@ -111,19 +111,6 @@
           <ul class="">
             <li class="" id="data-tasks"></li>
           </ul>
-          <!-- <form class="field has-addons mt-6" action="" data-new-task-form>
-            <div class="control">
-              <input
-                data-new-task-input
-                class="input"
-                type="text"
-                placeholder="Add a new task"
-              />
-            </div>
-            <div class="control">
-              <button class="button is-danger" type="button">+</button>
-            </div>
-          </form> -->
         </div>
       </section>
     </div>
@@ -137,7 +124,7 @@
         <div class="card-content">
           <div class="content is-flex-direction-row">
             <p id="description"></p>         
-            <time datetime="2016-1-1" id="date-task">Date is here</time>
+            <time datetime="2016-1-1" id="date-task"></time>
           </div>
         </div>
         <footer class="card-footer">

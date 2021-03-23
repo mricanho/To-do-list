@@ -120,12 +120,14 @@ function taskManipulation(task) {
   const contentTask = taskElement.querySelector('p');
   const descTask = taskElement.getElementById('description');
   const dateTask = taskElement.getElementById('date-task');
+    
   contentTask.htmlfor = task.id;
   contentTask.append(task.name);
   descTask.append(task.description);
   dateTask.append(task.date);
   tasksContainer.appendChild(taskElement);
 }
+
 
 function renderLists() {
   lists.forEach((list) => {

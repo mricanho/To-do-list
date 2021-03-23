@@ -91,7 +91,10 @@ function save() {
 function render() {
   clearElement(listContainer);
   renderLists();
+  showRender(); 
+}
 
+function showRender() {
   const selectedList = lists.find((list) => list.id === selectedListId);
   if (selectedListId == null) {
     listDisplayContainer.style.display = "none";
@@ -105,7 +108,12 @@ function render() {
 
 function renderTasks(selectedList) {
   selectedList.tasks.forEach((task) => {
-    const taskElement = document.importNode(taskTemplate.content, true);
+    taskManipulation(task);
+  });
+}
+
+function taskManipulation(task) {
+  const taskElement = document.importNode(taskTemplate.content, true);
     const checkbox = taskElement.querySelector("input");
     checkbox.id = task.id;
     // checkbox.checked = task.complete;
@@ -117,7 +125,6 @@ function renderTasks(selectedList) {
     descTask.append(task.description);
     dateTask.append(task.date);
     tasksContainer.appendChild(taskElement);
-  });
 }
 
 function renderLists() {

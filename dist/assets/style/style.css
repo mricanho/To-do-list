@@ -1,4 +1,4 @@
-.project-container {
+html {
   background-color: #f6d4cc;
   height: 100vh;
 }
@@ -15,6 +15,12 @@
 
 .tasks-container {
   background-color: #e1684e;
+  height: 100%;
+}
+
+.next-container {
+  background-color: #e1684e;
+  height: 100vh;
 }
 
 .subtitle {
@@ -41,4 +47,8 @@
 
 .a-card {
   color: #e1684e;
+}
+
+.form-button {
+  width: 20vh;
 }

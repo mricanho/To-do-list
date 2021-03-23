@@ -39,7 +39,7 @@
             />
           </div>
           <div class="control">
-            <button class="button is-danger">+</button>
+            <button class="button is-danger" type="button">+</button>
           </div>
         </form>
         <div class="button-container is-justify-content-flex-end">
@@ -47,34 +47,72 @@
             Delete this project
           </button>
         </div>
-        
       </section>
-      <section class="section column tasks-container">
-        <div class="container mt-6 pl-6 box" id="data-list-display-container">
-          <div class="header-task ">
-            <h2 class="subtitle has-text-weight-bold pt-4" id="data-list-title">
-              Example project
-            </h2>
-            <button class="button is-danger newtask-b">Add New Task</button>
+      <div class="modal" id="launch-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+          <div class="field">
+            <label class="label">Task title</label>
+            <div class="control">
+              <input data-title-task class="input" type="text" placeholder="e.g Take my dog for a walk" required>
+            </div>
           </div>
-          
-          <hr />
-          <ul class="">
-            <li class="" id="data-tasks"></li>
-          </ul>
-          <form class="field has-addons mt-6" action="" data-new-task-form>
+          <div class="field">
+            <label class="label">Description</label>
             <div class="control">
-              <input
-                data-new-task-input
-                class="input"
-                type="text"
-                placeholder="Add a new task"
-              />
+              <input data-description-task class="input" type="text" placeholder="e.g. I need to use the leash this time and took the avenue" required>
             </div>
+          </div>
+          <div class="field">
+            <label class="label">Due Date</label>
             <div class="control">
-              <button class="button is-danger">+</button>
+              <input data-date-task class="input" type="date" placeholder="e.g.">
             </div>
-          </form>
+          </div>
+          <div class="control mb-5">
+            <label class="label">Priority</label>
+            <div class="priority-container">
+              <label class="radio mr-6">
+                <input data-low type="radio" name="rsvp" checked="checked" class="mr-2">
+                Low Priority
+              </label>
+              <label class="radio mr-6">
+                <input data-medium type="radio" name="rsvp" class="mr-2">
+                Medium Priority
+              </label>
+              <label class="radio">
+                <input data-critical type="radio" name="rsvp" class="mr-2">
+                Critical Priority
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <p class="control has-text-centered">
+              <button class="button is-success mr-6 form-button" data-submit-task>
+                Submit Task
+              </button>
+              <button class="button is-danger form-button" id="cancel-form">
+                Cancel
+              </button>
+            </p>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close" id="close-modal"></button>
+      </div>
+      <section class="section column tasks-container">
+        <div class="next-container">
+          <div class="container mt-6 pl-6 box" id="data-list-display-container">
+            <div class="header-task ">
+              <h2 class="subtitle has-text-weight-bold pt-4" id="data-list-title">
+                Example project
+              </h2>
+              <button class="button is-danger newtask-b" id="newtask-b">Add New Task</button>
+            </div>          
+            <hr />
+            <ul class="">
+              <li class="" id="data-tasks"></li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>
@@ -87,14 +125,14 @@
         </header>
         <div class="card-content">
           <div class="content is-flex-direction-row">
-            <p id="description">Description is here</p>         
-            <time datetime="2016-1-1" id="date-task">Date is here</time>
+            <p id="description"></p>         
+            <time datetime="2016-1-1" id="date-task"></time>
           </div>
         </div>
         <footer class="card-footer">
-          <a href="#" class="card-footer-item a-card">Low Priority</a>
-          <a href="#" class="card-footer-item a-card">Medium Priority</a>
-          <a href="#" class="card-footer-item a-card">Critical Priority</a>
+          <p class="card-footer-item a-card has-background-light" id="low">Low Priority</p>
+          <p class="card-footer-item a-card yellow" id="medium">Medium Priority</p>
+          <p class="card-footer-item a-card red" id="critical">Critical Priority</p>
         </footer>
       </div>
     </template>

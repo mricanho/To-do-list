@@ -1,4 +1,3 @@
-
 const listContainer = document.getElementById('data-lists');
 const newListInput = document.getElementById('data-new-list-input');
 const listDisplayContainer = document.getElementById('data-list-display-container');
@@ -24,7 +23,7 @@ function deleteProject(e) {
 }
 
 function selectListContainer(e) {
-  if (e.target.tagName.toLowerCase() === 'li') {
+  if (e.target.tagName.toLowerCase() === "li") {
     selectedListId = e.target.dataset.listId;
     saveAndRender();
   }
@@ -33,10 +32,11 @@ function selectListContainer(e) {
 function formLogic(e) {
   e.preventDefault();
   const taskTitle = titleTask.value;
-  if (taskTitle == null || taskTitle === '') return;
+  if (taskTitle == null || taskTitle === "") return;
   const taskDescription = descriptionTask.value;
-  if (taskDescription == null || taskDescription === '') return;
+  if (taskDescription == null || taskDescription === "") return;
   const taskDate = dateTask.value;
+
   if (taskDate == null || taskDate === '') return;
   const taskPriority = priorityTask.value;
   if (taskPriority == null || taskPriority === '') return;
@@ -46,6 +46,7 @@ function formLogic(e) {
   dateTask.value = null;
   priorityTask.value = null;
   displayModal.classList.remove('is-active');
+
   const selectedList = lists.find((list) => list.id === selectedListId);
   selectedList.tasks.push(task);
   saveAndRender();
@@ -54,7 +55,7 @@ function formLogic(e) {
 function submitList(e) {
   e.preventDefault();
   const listName = newListInput.value;
-  if (listName == null || listName === '') return;
+  if (listName == null || listName === "") return;
   const list = createList(listName);
   newListInput.value = null;
   lists.push(list);
@@ -98,9 +99,9 @@ function render() {
 function showRender() {
   const selectedList = lists.find((list) => list.id === selectedListId);
   if (selectedListId == null) {
-    listDisplayContainer.style.display = 'none';
+    listDisplayContainer.style.display = "none";
   } else {
-    listDisplayContainer.style.display = '';
+    listDisplayContainer.style.display = "";
     listTitleElemnt.innerText = selectedList.name;
     clearElement(tasksContainer);
     renderTasks(selectedList);
@@ -115,7 +116,9 @@ function renderTasks(selectedList) {
 
 function taskManipulation(task) {
   const taskElement = document.importNode(taskTemplate.content, true);
-  const checkbox = taskElement.querySelector('input');
+  const listElement = document.createElement("li");
+  listElement.dataset.listId = task.id;
+  const checkbox = taskElement.querySelector("input");
   checkbox.id = task.id;
   // checkbox.checked = task.complete;
   const contentTask = taskElement.querySelector('p');
@@ -127,6 +130,7 @@ function taskManipulation(task) {
   contentTask.append(task.name);
   descTask.append(task.description);
   dateTask.append(task.date);
+
   priorityTask.append(task.priority);
   tasksContainer.appendChild(taskElement);
 }
@@ -134,15 +138,15 @@ function taskManipulation(task) {
 
 function renderLists() {
   lists.forEach((list) => {
-    const listElement = document.createElement('li');
+    const listElement = document.createElement("li");
     listElement.dataset.listId = list.id;
     listElement.setAttribute(
-      'class',
-      'subtitle ml-3 is-justify-content-space-between',
+      "class",
+      "subtitle ml-3 is-justify-content-space-between"
     );
     listElement.innerText = list.name;
     if (list.id === selectedListId) {
-      listElement.classList.add('active-list');
+      listElement.classList.add("active-list");
     }
     listContainer.appendChild(listElement);
   });
@@ -155,5 +159,11 @@ function clearElement(element) {
 }
 
 export {
-  render, selectListContainer, deleteProject, listContainer, formLogic, taskForm, submitList,
+  render,
+  selectListContainer,
+  deleteProject,
+  listContainer,
+  formLogic,
+  taskForm,
+  submitList,
 };

@@ -25,7 +25,7 @@
     <div class="g-container columns m-0">
       <section class="section column is-one-third project-container pt-6 pl-6">
         <div class="container pt-6">
-          <h1 class="title mt-6 pt-6">My Projects</h1>
+          <h1 class="title mt-6 pt-6 mb-1">My Projects</h1>
           <hr />
           <ul id="data-lists"></ul>
         </div>
@@ -72,7 +72,7 @@
           <div class="field">
             <label class="label">Priority</label>
             <div class="control">
-              <input data-priority-task class="input" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" min="1" max="5"  name = "Priority" placeholder="Priority (0 to 9)" />
+              <input data-priority-task class="input" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" min="0" max="9"  name = "Priority" placeholder="Priority (0 to 9)" />
             </div>
           </div>
           <div class="field">

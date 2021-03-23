@@ -3,6 +3,9 @@ html {
   height: 100vh;
 }
 
+hr {
+  margin-top: 0px;
+}
 .header-task {
   display: flex;
   align-items: center;

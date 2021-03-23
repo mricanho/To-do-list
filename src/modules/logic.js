@@ -1,22 +1,18 @@
-const listContainer = document.getElementById("data-lists");
-const newListInput = document.getElementById("data-new-list-input");
-const listDisplayContainer = document.getElementById(
-  "data-list-display-container"
-);
-const listTitleElemnt = document.getElementById("data-list-title");
-const tasksContainer = document.getElementById("data-tasks");
-const taskTemplate = document.getElementById("task-template");
-const displayModal = document.getElementById("launch-modal");
-const taskForm = document.querySelector("[data-submit-task]");
-const titleTask = document.querySelector("[data-title-task]");
-const descriptionTask = document.querySelector("[data-description-task]");
-const dateTask = document.querySelector("[data-date-task]");
-const lowTask = document.querySelector("[data-low]");
-const mediumTask = document.querySelector("[data-medium]");
-const criticalTask = document.querySelector("[data-critical]");
+const listContainer = document.getElementById('data-lists');
+const newListInput = document.getElementById('data-new-list-input');
+const listDisplayContainer = document.getElementById('data-list-display-container');
+const listTitleElemnt = document.getElementById('data-list-title');
+const tasksContainer = document.getElementById('data-tasks');
+const taskTemplate = document.getElementById('task-template');
+const displayModal = document.getElementById('launch-modal');
+const taskForm = document.querySelector('[data-submit-task]');
+const titleTask = document.querySelector('[data-title-task]');
+const descriptionTask = document.querySelector('[data-description-task]');
+const dateTask = document.querySelector('[data-date-task]');
+const priorityTask = document.querySelector('[data-priority-task]')
 
-const LOCAL_STORAGE_LIST_KEY = "task.lists";
-const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
+const LOCAL_STORAGE_LIST_KEY = 'task.lists';
+const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
@@ -40,12 +36,17 @@ function formLogic(e) {
   const taskDescription = descriptionTask.value;
   if (taskDescription == null || taskDescription === "") return;
   const taskDate = dateTask.value;
-  if (taskDate == null || taskDate === "") return;
-  const task = createTask(taskTitle, taskDescription, taskDate);
+
+  if (taskDate == null || taskDate === '') return;
+  const taskPriority = priorityTask.value;
+  if (taskPriority == null || taskPriority === '') return;
+  const task = createTask(taskTitle, taskDescription, taskDate, taskPriority);
   titleTask.value = null;
   descriptionTask.value = null;
   dateTask.value = null;
-  displayModal.classList.remove("is-active");
+  priorityTask.value = null;
+  displayModal.classList.remove('is-active');
+
   const selectedList = lists.find((list) => list.id === selectedListId);
   selectedList.tasks.push(task);
   saveAndRender();
@@ -69,13 +70,13 @@ function createList(name) {
   };
 }
 
-function createTask(name, description, date) {
+function createTask(name, description, date, priority) {
   return {
     id: Date.now().toString(),
     name,
     description,
     date,
-    complete: false,
+    priority
   };
 }
 
@@ -120,16 +121,20 @@ function taskManipulation(task) {
   const checkbox = taskElement.querySelector("input");
   checkbox.id = task.id;
   // checkbox.checked = task.complete;
-  const contentTask = taskElement.querySelector("p");
-  const descTask = taskElement.getElementById("description");
-  const dateTask = taskElement.getElementById("date-task");
+  const contentTask = taskElement.querySelector('p');
+  const descTask = taskElement.getElementById('description');
+  const dateTask = taskElement.getElementById('date-task');
+  const priorityTask = taskElement.getElementById('final-priority');
+      
   contentTask.htmlfor = task.id;
   contentTask.append(task.name);
   descTask.append(task.description);
   dateTask.append(task.date);
-  listElement.appendChild(taskElement);
-  tasksContainer.appendChild(listElement);
+
+  priorityTask.append(task.priority);
+  tasksContainer.appendChild(taskElement);
 }
+
 
 function renderLists() {
   lists.forEach((list) => {

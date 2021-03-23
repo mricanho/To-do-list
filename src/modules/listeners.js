@@ -9,6 +9,7 @@ const deleteListButton = document.getElementById('data-delete-list-button');
 const cancelForm = document.getElementById('cancel-form');
 const newListForm = document.getElementById('data-new-list-form');
 
+
 function listeners() {
   openTaskForm.addEventListener('click', () => {
     displayModal.classList.add('is-active');
@@ -37,6 +38,7 @@ function listeners() {
   taskForm.addEventListener('submit', formLogic);
 
   newListForm.addEventListener('submit', submitList);
+
 }
 
 export { listeners };

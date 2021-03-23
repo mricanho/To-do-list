@@ -72,7 +72,7 @@
           <div class="field">
             <label class="label">Priority</label>
             <div class="control">
-              <input class="input" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" min="1" max="5"  name = "Priority" placeholder="Priority (0 to 9)" />
+              <input data-priority-task class="input" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" min="1" max="5"  name = "Priority" placeholder="Priority (0 to 9)" />
             </div>
           </div>
           <div class="field">
@@ -119,7 +119,8 @@
           </div>
         </div>
         <footer class="card-footer">
-          <p class="card-footer-item a-card" id="low" data-low>Priority</p>
+          <p class="card-footer-item a-card" id="low" data-low>Priority:</p>
+          <p class="card-footer-item a-card has-text-weight-bold" id=final-priority></p>
         </footer>
       </div>
     </template>

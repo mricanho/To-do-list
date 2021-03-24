@@ -12,6 +12,9 @@ const titleTask = document.querySelector('[data-title-task]');
 const descriptionTask = document.querySelector('[data-description-task]');
 const dateTask = document.querySelector('[data-date-task]');
 const priorityTask = document.querySelector('[data-priority-task]');
+
+// AQuí ceci
+
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
@@ -37,7 +40,6 @@ const formLogic = (e) => {
   const taskDescription = descriptionTask.value;
   if (taskDescription == null || taskDescription === '') return;
   const taskDate = dateTask.value;
-
   if (taskDate == null || taskDate === '') return;
   const taskPriority = priorityTask.value;
   if (taskPriority == null || taskPriority === '') return;
@@ -47,7 +49,6 @@ const formLogic = (e) => {
   dateTask.value = null;
   priorityTask.value = null;
   displayModal.classList.remove('is-active');
-
   const selectedList = lists.find((list) => list.id === selectedListId);
   selectedList.tasks.push(task);
   saveAndRender();
@@ -62,6 +63,12 @@ const submitList = (e) => {
   lists.push(list);
   saveAndRender();
 };
+
+export function defaultProject(e) {
+  const list = createList("Default Project")
+  lists.push(list);
+  saveAndRender();
+}
 
 const createList = (name) => ({
   id: Date.now().toString(),
@@ -156,7 +163,7 @@ const clearElement = (element) => {
 
 const clickHandler = (e) => {
   if (e.target.matches('.tryYes')) {
-    alert('Please');
+    displayModal.classList.add('is-active')
   }
 };
 

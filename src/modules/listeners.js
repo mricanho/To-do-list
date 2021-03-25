@@ -64,4 +64,4 @@ const listeners = () => {
   document.addEventListener('click', clickHandler);
 };
 
-export { listeners };
+export default listeners;

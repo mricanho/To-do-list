@@ -18,6 +18,8 @@ const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
+const taskModal = document.getElementById("task-modal");
+
 const deleteProject = (e) => {
   lists = lists.filter((list) => list.id !== selectedListId);
   selectedListId = null;
@@ -166,7 +168,7 @@ const clearElement = (element) => {
 
 const clickHandler = (e) => {
   if (e.target.matches(".tryYes")) {
-    displayModal.classList.add("is-active");
+    taskModal.classList.add("is-active");
   }
 };
 

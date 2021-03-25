@@ -114,7 +114,7 @@
                 class="button is-success mr-6 form-button"
                 data-submit-task
               >
-                Submit Task
+                Submit
               </button>
               <button class="button is-danger form-button" id="cancel-form">
                 Cancel
@@ -126,6 +126,80 @@
           class="modal-close is-large"
           aria-label="close"
           id="close-modal"
+        ></button>
+      </div>
+      <div class="modal" id="task-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+          <div class="field">
+            <label class="label">Task title</label>
+            <div class="control">
+              <input
+                data-title-task
+                class="input"
+                type="text"
+                placeholder="e.g Take my dog for a walk"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <input
+                data-description-task
+                class="input"
+                type="text"
+                placeholder="e.g. I need to use the leash this time and took the avenue"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Due Date</label>
+            <div class="control">
+              <input
+                data-date-task
+                class="input"
+                type="date"
+                placeholder="e.g."
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Priority</label>
+            <div class="control">
+              <input
+                data-priority-task
+                class="input"
+                type="number"
+                pattern="/^-?\d+\.?\d*$/"
+                onKeyPress="if(this.value.length==1) return false;"
+                min="0"
+                max="9"
+                name="Priority"
+                placeholder="Priority (0 to 9)"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <p class="control has-text-centered">
+              <button
+                class="button is-success mr-6 form-button"
+                data-submit-task
+              >
+                Submit
+              </button>
+              <button class="button is-danger form-button" id="cancel-form2">
+                Cancel
+              </button>
+            </p>
+          </div>
+        </div>
+        <button
+          class="modal-close is-large"
+          aria-label="close"
+          id="close-modal2"
         ></button>
       </div>
       <section class="section column tasks-container">

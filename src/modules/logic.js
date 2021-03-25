@@ -176,7 +176,7 @@ const editTask = () => {
     btn.addEventListener("click", (e) => {
       const id = e.target.id;
       const projectIndex = getProjectIndex(selectedListId);
-      const taskIndex = lists[projectIndex].tasks.findIdex(
+      const taskIndex = lists[projectIndex].tasks.findIndex(
         (task) => task.id == id
       );
 
@@ -185,7 +185,7 @@ const editTask = () => {
   });
 };
 
-const getProjectIndex = (id) => lists.findIdex((pj) => pj.id == id);
+const getProjectIndex = (id) => lists.findIndex((pj) => pj.id == id);
 
 export {
   editTask,

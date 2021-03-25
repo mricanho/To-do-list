@@ -175,14 +175,17 @@ const editTask = () => {
   button.map((btn) => {
     btn.addEventListener("click", (e) => {
       const id = e.target.id;
-      console.log(lists);
-      // const selectedList = lists.find((list) => list.id === selectedListId);
-      console.log(selectedListId);
-      const b = lists.findIndex[(tj) => tj.id === selectedListId];
-      console.log(b);
+      const projectIndex = getProjectIndex(selectedListId);
+      const taskIndex = lists[projectIndex].tasks.findIdex(
+        (task) => task.id == id
+      );
+
+      lists[projectIndex][taskIndex] = newValue;
     });
   });
 };
+
+const getProjectIndex = (id) => lists.findIdex((pj) => pj.id == id);
 
 export {
   editTask,

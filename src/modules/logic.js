@@ -74,12 +74,18 @@ const defaultProject = () => {
 };
 
 const defaultTask = () => {
-  const task = createTask("The firt task", "Here you need to write the description of the task", "2021-12-12", "9");
-  
+  const task = createTask(
+    "The firt task",
+    "Here you need to write the description of the task",
+    "2021-12-12",
+    "9"
+  );
   const selectedList = lists.find((list) => list.id === selectedListId);
-  selectedList.tasks.push(task);
+  if (selectedList.tasks === undefined || selectedList.tasks.length == 0) {
+    selectedList.tasks.push(task);
+  }
   saveAndRender();
-}
+};
 
 const createList = (name) => ({
   id: Date.now().toString(),

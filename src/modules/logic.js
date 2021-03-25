@@ -128,6 +128,9 @@ const taskManipulation = (task) => {
   const descTask = taskElement.getElementById("description");
   const dateTask = taskElement.getElementById("date-task");
   const priorityTask = taskElement.getElementById("final-priority");
+  const buttonEdit = taskElement.getElementById("edit");
+
+  buttonEdit.setAttribute("id", task.id);
 
   contentTask.htmlfor = task.id;
   contentTask.append(task.name);
@@ -167,7 +170,22 @@ const clickHandler = (e) => {
   }
 };
 
+const editTask = () => {
+  const button = [...document.querySelectorAll(".tryYes")];
+  button.map((btn) => {
+    btn.addEventListener("click", (e) => {
+      const id = e.target.id;
+      console.log(lists);
+      // const selectedList = lists.find((list) => list.id === selectedListId);
+      console.log(selectedListId);
+      const b = lists.findIndex[(tj) => tj.id === selectedListId];
+      console.log(b);
+    });
+  });
+};
+
 export {
+  editTask,
   defaultProject,
   render,
   selectListContainer,

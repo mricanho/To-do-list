@@ -9,19 +9,24 @@ import {
   editTask,
   editForm,
   editLogic,
-/*   deleteTask, */
+  deleteTask,
   deleteObject,
+  deleteForm,
+  deleteLogic,
 } from './logic';
 
 const displayModal = document.getElementById('launch-modal');
 const taskModal = document.getElementById('task-modal');
 const closeModal = document.querySelector('#close-modal');
 const closeModal2 = document.querySelector('#close-modal2');
+const closeModal3 = document.querySelector('#close-modal3');
 const openTaskForm = document.getElementById('newtask-b');
 const deleteListButton = document.getElementById('data-delete-list-button');
 const cancelForm = document.getElementById('cancel-form');
 const cancelForm2 = document.getElementById('cancel-form2');
+const cancelForm3 = document.getElementById('cancel-form3');
 const newListForm = document.getElementById('data-new-list-form');
+const deleteModal = document.getElementById('delete-modal');
 
 const editTaskForm = document.getElementById('yay');
 
@@ -60,6 +65,20 @@ const listeners = () => {
     }
   });
 
+  closeModal3.addEventListener('click', () => {
+    deleteModal.classList.remove('is-active');
+  });
+
+  cancelForm3.addEventListener('click', () => {
+    deleteModal.classList.remove('is-active');
+  });
+
+  document.addEventListener('keydown', ({ key }) => {
+    if (key === 'Escape') {
+      deleteModal.classList.remove('is-active');
+    }
+  });
+
   deleteListButton.addEventListener('click', deleteProject);
 
   listContainer.addEventListener('click', selectListContainer);
@@ -68,7 +87,9 @@ const listeners = () => {
 
   editForm.addEventListener('click', editLogic);
 
-/*   document.addEventListener('click', deleteTask); */
+  deleteForm.addEventListener('click', deleteLogic);
+
+  document.addEventListener('click', deleteTask);
 
   taskForm.addEventListener('submit', formLogic);
 

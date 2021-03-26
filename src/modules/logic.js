@@ -26,6 +26,9 @@ const descriptionTask2 = document.querySelector('[data-description-task2]');
 const dateTask2 = document.querySelector('[data-date-task2]');
 const priorityTask2 = document.querySelector('[data-priority-task2]');
 
+const deleteModal = document.getElementById('delete-modal');
+const deleteForm = document.querySelector('[data-submit-task3]');
+
 
 const taskManipulation = (task) => {
   
@@ -42,7 +45,6 @@ const taskManipulation = (task) => {
   editButton.id = task.id;
   const deleteButton = taskElement.getElementById('delete-task');
   deleteButton.id = task.id;
-
   contentTask.htmlfor = task.id;
   contentTask.append(task.name);
   descTask.append(task.description);
@@ -184,6 +186,16 @@ const editLogic = (e) => {
   saveAndRender();
 };
 
+const deleteLogic = (e) => {
+  e.preventDefault();
+  deleteModal.classList.remove('is-active');
+  const projectIndex = getProjectIndex(selectedListId);
+  const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id);
+  lists[projectIndex].tasks.splice(taskIndex, 1);
+  console.log(e.target.id);
+  saveAndRender();
+}
+
 
 
 const createList = (name) => ({
@@ -226,14 +238,15 @@ const defaultTask = () => {
 
 // CHANGE HERE
 
-/* const deleteTask = (e) => {
+const deleteTask = (e) => {
   if (e.target.matches('.delete-task')) {
+    deleteModal.classList.add('is-active');
     const projectIndex = getProjectIndex(selectedListId);
-    console.log(lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id));
-    const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id);
-    lists[projectIndex].tasks.splice(taskIndex, 1);
+    const task = lists[projectIndex].tasks.find(
+      task => task.id === e.target.id
+    )
   }
-}; */
+};
 
 const clickHandler = (e) => {
   if (e.target.matches('.tryYes')) {
@@ -290,6 +303,8 @@ export {
   editTask,
   editForm,
   editLogic,
-/*   deleteTask, */
+  deleteTask,
   deleteObject,
+  deleteForm,
+  deleteLogic,
 };

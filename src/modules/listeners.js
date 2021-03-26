@@ -7,6 +7,9 @@ import {
   submitList,
   clickHandler,
   editTask,
+  editForm,
+  editLogic,
+  clickSubmitForm,
 } from './logic';
 
 const displayModal = document.getElementById('launch-modal');
@@ -60,13 +63,15 @@ const listeners = () => {
 
   taskForm.addEventListener('click', formLogic);
 
+  editForm.addEventListener('click', editLogic);
+
   taskForm.addEventListener('submit', formLogic);
 
   newListForm.addEventListener('submit', submitList);
 
   document.addEventListener('click', clickHandler);
 
-  editTaskForm.addEventListener('click', editTask);
+/*   editTaskForm.addEventListener('click', editTask); */
 };
 
 export default listeners;

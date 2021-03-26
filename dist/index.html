@@ -135,11 +135,12 @@
             <label class="label">Task title</label>
             <div class="control">
               <input
-                data-title-task
+                data-title-task2
                 class="input"
                 type="text"
                 placeholder="e.g Take my dog for a walk"
                 required
+                id="titleModal"
               />
             </div>
           </div>
@@ -147,7 +148,8 @@
             <label class="label">Description</label>
             <div class="control">
               <input
-                data-description-task
+                data-description-task2
+                id="descriptionModal"
                 class="input"
                 type="text"
                 placeholder="e.g. I need to use the leash this time and took the avenue"
@@ -159,7 +161,8 @@
             <label class="label">Due Date</label>
             <div class="control">
               <input
-                data-date-task
+                id="dateModal"
+                data-date-task2
                 class="input"
                 type="date"
                 placeholder="e.g."
@@ -170,7 +173,8 @@
             <label class="label">Priority</label>
             <div class="control">
               <input
-                data-priority-task
+                id="priorityModal"
+                data-priority-task2
                 class="input"
                 type="number"
                 pattern="/^-?\d+\.?\d*$/"
@@ -185,8 +189,8 @@
           <div class="field">
             <p class="control has-text-centered">
               <button
-                class="button is-success mr-6 form-button"
-                data-submit-task
+                class="button is-success mr-6 form-button submit-task"
+                data-submit-task2
               >
                 Submit
               </button>

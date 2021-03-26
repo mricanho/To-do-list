@@ -19,8 +19,15 @@ let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
 const taskModal = document.getElementById('task-modal');
+const editForm = document.querySelector('[data-submit-task2]');
+const titleTask2 = document.querySelector('[data-title-task2]');
+const descriptionTask2 = document.querySelector('[data-description-task2]');
+const dateTask2 = document.querySelector('[data-date-task2]');
+const priorityTask2 = document.querySelector('[data-priority-task2]');
+
 
 const taskManipulation = (task) => {
+  
   const taskElement = document.importNode(taskTemplate.content, true);
   const listElement = document.createElement('li');
   listElement.dataset.listId = task.id;
@@ -30,6 +37,8 @@ const taskManipulation = (task) => {
   const descTask = taskElement.getElementById('description');
   const dateTask = taskElement.getElementById('date-task');
   const priorityTask = taskElement.getElementById('final-priority');
+  const editButton=taskElement.getElementById('edit');
+  editButton.id = task.id;
 
   contentTask.htmlfor = task.id;
   contentTask.append(task.name);
@@ -53,9 +62,13 @@ const renderTasks = (selectedList) => {
   });
 };
 
+
+// CHANGE HERE
+
+
 const showRender = () => {
   const selectedList = lists.find((list) => list.id === selectedListId);
-  if (selectedListId === null) {
+  if (selectedListId === null || selectedListId === 'null') {
     listDisplayContainer.style.display = 'none';
   } else {
     listDisplayContainer.style.display = '';
@@ -64,6 +77,9 @@ const showRender = () => {
     renderTasks(selectedList);
   }
 };
+
+
+// CHANGE HERE
 
 const renderLists = () => {
   lists.forEach((list) => {
@@ -139,6 +155,27 @@ const formLogic = (e) => {
   saveAndRender();
 };
 
+const editLogic = (e) => {
+  e.preventDefault();
+  const taskTitle = titleTask2.value;
+  if (taskTitle === null || taskTitle === '') return;
+  const taskDescription = descriptionTask2.value;
+  if (taskDescription === null || taskDescription === '') return;
+  const taskDate = dateTask2.value;
+  if (taskDate === null || taskDate === '') return;
+  const taskPriority = priorityTask2.value;
+  if (taskPriority === null || taskPriority === '') return;
+  const task = createTask(taskTitle, taskDescription, taskDate, taskPriority);
+  titleTask2.value = null;
+  descriptionTask2.value = null;
+  dateTask2.value = null;
+  priorityTask2.value = null;
+  taskModal.classList.remove('is-active');
+  const selectedList = lists.find((list) => list.id === selectedListId);
+  selectedList.tasks.push(task);
+  saveAndRender();
+};
+
 const createList = (name) => ({
   id: Date.now().toString(),
   name,
@@ -177,12 +214,49 @@ const defaultTask = () => {
   saveAndRender();
 };
 
+// CHANGE HERE
+
+
 const clickHandler = (e) => {
   if (e.target.matches('.tryYes')) {
     taskModal.classList.add('is-active');
+    const projectIndex = getProjectIndex(selectedListId);
+    const task = lists[projectIndex].tasks.find(
+      task => task.id === e.target.id
+    )
+    console.log(task);
+    const title = document.getElementById('titleModal');
+    const description=document.getElementById('descriptionModal');
+    title.value = task.name;
+    description.value = task.description;
+    const date = document.getElementById('dateModal');
+    date.value = task.date;
+    const priority=document.getElementById('priorityModal');
+    priority.value = task.priority;
   }
 };
 
+const clickSubmitForm = (e) => {
+  if (e.target.matches('.submit-task')) {
+    const projectIndex = getProjectIndex(selectedListId);
+    const task = lists[projectIndex].tasks.find(task => task.id === e.target.id);
+    console.log(task);
+    console.log(e.target.id);
+    const title=document.getElementById('titleModal');
+    const description=document.getElementById('descriptionModal');
+    title.value = task.name;
+    description.value = task.description;
+    const date = document.getElementById('dateModal');
+    date.value = task.date;
+    const priority = document.getElementById('priorityModal');
+    priority.value=task.priority;
+  }
+}
+// CHANGE HERE
+
+
+
+// try the next method, but didn't work, it's not use it in any 
 const editTask = () => {
   const button = [...document.querySelectorAll('.tryYes')];
   button.map((btn) => {
@@ -193,7 +267,7 @@ const editTask = () => {
         (task) => task.id == id,
       );
 
-      lists[projectIndex][taskIndex] = formLogic();
+      lists[projectIndex][taskIndex] = newvalue;
     });
   });
 };
@@ -212,4 +286,7 @@ export {
   clickHandler,
   defaultTask,
   editTask,
+  editForm,
+  editLogic,
+  clickSubmitForm,
 };

@@ -183,6 +183,23 @@ const clickHandler = (e) => {
   }
 };
 
+const editTask = () => {
+  const button = [...document.querySelectorAll('.tryYes')];
+  button.map((btn) => {
+    btn.addEventListener('click', (e) => {
+      const { id } = e.target;
+      const projectIndex = getProjectIndex(selectedListId);
+      const taskIndex = lists[projectIndex].tasks.findIndex(
+        (task) => task.id == id,
+      );
+
+      lists[projectIndex][taskIndex] = formLogic();
+    });
+  });
+};
+
+const getProjectIndex = (id) => lists.findIndex((pj) => pj.id == id);
+
 export {
   defaultProject,
   render,

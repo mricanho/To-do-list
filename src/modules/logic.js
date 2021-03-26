@@ -20,6 +20,7 @@ let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
 const taskModal = document.getElementById('task-modal');
 const editForm = document.querySelector('[data-submit-task2]');
+const deleteObject = document.querySelector('[data-delete-button]');
 const titleTask2 = document.querySelector('[data-title-task2]');
 const descriptionTask2 = document.querySelector('[data-description-task2]');
 const dateTask2 = document.querySelector('[data-date-task2]');
@@ -39,6 +40,8 @@ const taskManipulation = (task) => {
   const priorityTask = taskElement.getElementById('final-priority');
   const editButton=taskElement.getElementById('edit');
   editButton.id = task.id;
+  const deleteButton = taskElement.getElementById('delete-task');
+  deleteButton.id = task.id;
 
   contentTask.htmlfor = task.id;
   contentTask.append(task.name);
@@ -172,10 +175,16 @@ const editLogic = (e) => {
   priorityTask2.value = null;
   taskModal.classList.remove('is-active');
   const projectIndex = getProjectIndex(selectedListId);
-  const previousTask = lists[projectIndex].tasks.find(task => task.id === e.target.id)
-  previousTask.tasks.push(task);
+  const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id);
+  const selectedList = lists.find((list) => list.id === selectedListId);
+
+  lists[projectIndex].tasks.splice(taskIndex, 1);
+  selectedList.tasks.push(task);
+
   saveAndRender();
 };
+
+
 
 const createList = (name) => ({
   id: Date.now().toString(),
@@ -217,6 +226,14 @@ const defaultTask = () => {
 
 // CHANGE HERE
 
+/* const deleteTask = (e) => {
+  if (e.target.matches('.delete-task')) {
+    const projectIndex = getProjectIndex(selectedListId);
+    console.log(lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id));
+    const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id);
+    lists[projectIndex].tasks.splice(taskIndex, 1);
+  }
+}; */
 
 const clickHandler = (e) => {
   if (e.target.matches('.tryYes')) {
@@ -225,7 +242,6 @@ const clickHandler = (e) => {
     const task = lists[projectIndex].tasks.find(
       task => task.id === e.target.id
     )
-    console.log(task);
     const title = document.getElementById('titleModal');
     const description=document.getElementById('descriptionModal');
     title.value = task.name;
@@ -237,22 +253,7 @@ const clickHandler = (e) => {
   }
 };
 
-const clickSubmitForm = (e) => {
-  if (e.target.matches('.submit-task')) {
-    const projectIndex = getProjectIndex(selectedListId);
-    const task = lists[projectIndex].tasks.find(task => task.id === e.target.id);
-    console.log(task);
-    console.log(e.target.id);
-    const title=document.getElementById('titleModal');
-    const description=document.getElementById('descriptionModal');
-    title.value = task.name;
-    description.value = task.description;
-    const date = document.getElementById('dateModal');
-    date.value = task.date;
-    const priority = document.getElementById('priorityModal');
-    priority.value=task.priority;
-  }
-}
+
 // CHANGE HERE
 
 
@@ -289,5 +290,6 @@ export {
   editTask,
   editForm,
   editLogic,
-  clickSubmitForm,
+/*   deleteTask, */
+  deleteObject,
 };

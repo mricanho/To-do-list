@@ -26,9 +26,7 @@ const descriptionTask2 = document.querySelector('[data-description-task2]');
 const dateTask2 = document.querySelector('[data-date-task2]');
 const priorityTask2 = document.querySelector('[data-priority-task2]');
 
-
 const taskManipulation = (task) => {
-  
   const taskElement = document.importNode(taskTemplate.content, true);
   const listElement = document.createElement('li');
   listElement.dataset.listId = task.id;
@@ -38,7 +36,7 @@ const taskManipulation = (task) => {
   const descTask = taskElement.getElementById('description');
   const dateTask = taskElement.getElementById('date-task');
   const priorityTask = taskElement.getElementById('final-priority');
-  const editButton=taskElement.getElementById('edit');
+  const editButton = taskElement.getElementById('edit');
   editButton.id = task.id;
   const deleteButton = taskElement.getElementById('delete-task');
   deleteButton.id = task.id;
@@ -65,10 +63,6 @@ const renderTasks = (selectedList) => {
   });
 };
 
-
-// CHANGE HERE
-
-
 const showRender = () => {
   const selectedList = lists.find((list) => list.id === selectedListId);
   if (selectedListId === null || selectedListId === 'null') {
@@ -80,9 +74,6 @@ const showRender = () => {
     renderTasks(selectedList);
   }
 };
-
-
-// CHANGE HERE
 
 const renderLists = () => {
   lists.forEach((list) => {
@@ -158,6 +149,8 @@ const formLogic = (e) => {
   saveAndRender();
 };
 
+const getProjectIndex = (id) => lists.findIndex((pj) => pj.id === id);
+
 const editLogic = (e) => {
   e.preventDefault();
   const taskTitle = titleTask2.value;
@@ -175,7 +168,9 @@ const editLogic = (e) => {
   priorityTask2.value = null;
   taskModal.classList.remove('is-active');
   const projectIndex = getProjectIndex(selectedListId);
-  const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id);
+  const taskIndex = lists[projectIndex].tasks.findIndex(
+    (pj) => pj.id === e.target.id,
+  );
   const selectedList = lists.find((list) => list.id === selectedListId);
 
   lists[projectIndex].tasks.splice(taskIndex, 1);
@@ -183,8 +178,6 @@ const editLogic = (e) => {
 
   saveAndRender();
 };
-
-
 
 const createList = (name) => ({
   id: Date.now().toString(),
@@ -224,57 +217,23 @@ const defaultTask = () => {
   saveAndRender();
 };
 
-// CHANGE HERE
-
-/* const deleteTask = (e) => {
-  if (e.target.matches('.delete-task')) {
-    const projectIndex = getProjectIndex(selectedListId);
-    console.log(lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id));
-    const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id);
-    lists[projectIndex].tasks.splice(taskIndex, 1);
-  }
-}; */
-
 const clickHandler = (e) => {
   if (e.target.matches('.tryYes')) {
     taskModal.classList.add('is-active');
     const projectIndex = getProjectIndex(selectedListId);
     const task = lists[projectIndex].tasks.find(
-      task => task.id === e.target.id
-    )
+      (task) => task.id === e.target.id,
+    );
     const title = document.getElementById('titleModal');
-    const description=document.getElementById('descriptionModal');
+    const description = document.getElementById('descriptionModal');
     title.value = task.name;
     description.value = task.description;
     const date = document.getElementById('dateModal');
     date.value = task.date;
-    const priority=document.getElementById('priorityModal');
+    const priority = document.getElementById('priorityModal');
     priority.value = task.priority;
   }
 };
-
-
-// CHANGE HERE
-
-
-
-// try the next method, but didn't work, it's not use it in any 
-const editTask = () => {
-  const button = [...document.querySelectorAll('.tryYes')];
-  button.map((btn) => {
-    btn.addEventListener('click', (e) => {
-      const { id } = e.target;
-      const projectIndex = getProjectIndex(selectedListId);
-      const taskIndex = lists[projectIndex].tasks.findIndex(
-        (task) => task.id == id,
-      );
-
-      lists[projectIndex][taskIndex] = newvalue;
-    });
-  });
-};
-
-const getProjectIndex = (id) => lists.findIndex((pj) => pj.id == id);
 
 export {
   defaultProject,
@@ -287,9 +246,7 @@ export {
   submitList,
   clickHandler,
   defaultTask,
-  editTask,
   editForm,
   editLogic,
-/*   deleteTask, */
   deleteObject,
 };

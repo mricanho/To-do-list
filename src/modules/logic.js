@@ -171,8 +171,9 @@ const editLogic = (e) => {
   dateTask2.value = null;
   priorityTask2.value = null;
   taskModal.classList.remove('is-active');
-  const selectedList = lists.find((list) => list.id === selectedListId);
-  selectedList.tasks.push(task);
+  const projectIndex = getProjectIndex(selectedListId);
+  const previousTask = lists[projectIndex].tasks.find(task => task.id === e.target.id)
+  previousTask.tasks.push(task);
   saveAndRender();
 };
 

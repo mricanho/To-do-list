@@ -6,6 +6,7 @@ import {
   formLogic,
   submitList,
   clickHandler,
+  editTask,
 } from './logic';
 
 const displayModal = document.getElementById('launch-modal');
@@ -17,6 +18,8 @@ const deleteListButton = document.getElementById('data-delete-list-button');
 const cancelForm = document.getElementById('cancel-form');
 const cancelForm2 = document.getElementById('cancel-form2');
 const newListForm = document.getElementById('data-new-list-form');
+
+const editTaskForm = document.getElementById('yay');
 
 const listeners = () => {
   openTaskForm.addEventListener('click', () => {
@@ -62,6 +65,8 @@ const listeners = () => {
   newListForm.addEventListener('submit', submitList);
 
   document.addEventListener('click', clickHandler);
+
+  editTaskForm.addEventListener('click', editTask);
 };
 
 export default listeners;

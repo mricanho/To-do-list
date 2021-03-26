@@ -211,4 +211,5 @@ export {
   submitList,
   clickHandler,
   defaultTask,
+  editTask,
 };

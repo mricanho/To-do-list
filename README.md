@@ -7,7 +7,7 @@ This project was created using the concepts of Single Responsibility, factory fu
 
 ## Live demo
 
-[live demo](https://rawcdn.githack.com/mricanho/To-do-list/078b2ea7bdbc6281502cf41f826802d6d64e8b09/dist/index.html)
+[live demo]()
 
 ## Built With
 

@@ -45,14 +45,6 @@
             <button class="button is-danger" type="button">+</button>
           </div>
         </form>
-        <div class="button-container is-justify-content-flex-end">
-          <button
-            class="button is-danger dbutton mt-5 is-small is-inverted"
-            id="data-delete-list-button"
-          >
-            Delete this project
-          </button>
-        </div>
       </section>
       <div class="modal" id="launch-modal">
         <div class="modal-background"></div>
@@ -216,9 +208,18 @@
               >
                 Default Project
               </h2>
-              <button class="button is-danger newtask-b" id="newtask-b">
-                Add New Task
-              </button>
+              <div class="div-but">
+                <button class="button is-danger newtask-b" id="newtask-b">
+                  Add New Task
+                </button>
+                <button
+                    class="button is-danger newtask-b"
+                    id="data-delete-list-button"
+                  >
+                    Delete this project
+                </button>
+                </div">
+              </div>
             </div>
             <hr />
             <ul class="" id="data-tasks"></ul>
@@ -232,8 +233,9 @@
           <p class="card-header-title">
             <input type="checkbox" class="mr-2" />
           </p>
-          <button id="edit" class="button is-danger tryYes mt-2 is-small">Edit</button>
-          <button data-delete-button id="delete-task" class="button is-danger is-inverted delete-task ml-2 mt-2 mr-2 is-small">Delete</button>
+          <button id="edit" class="button is-danger tryYes mt-2 is-small">
+            Edit
+          </button>
         </header>
         <div class="card-content">
           <div class="content is-flex-direction-row">

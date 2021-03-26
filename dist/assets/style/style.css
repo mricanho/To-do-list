@@ -6,10 +6,21 @@ html {
 hr {
   margin-top: 0px;
 }
+
 .header-task {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.div-but {
+  display: flex;
+  justify-content: flex-end;
+  width: 30em;
+}
+
+.button {
+  margin: 0 1em;
 }
 
 .newtask-b {

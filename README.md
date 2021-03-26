@@ -3,7 +3,7 @@
 This project is a Todo-List where you can create a new Project and inside this project, you can create a task, the task contains a title, description, due date, and priority.
 This project was created using the concepts of Single Responsibility, factory functions and, the Module Pattern.
 
-![screenshot](dist/assets/images/screen.PNG)
+![screenshot](dist/assets/images/screen.png)
 
 ## Live demo
 

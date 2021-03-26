@@ -1,6 +1,7 @@
 # Todo-List
 
-This project consists in build a Todo-List. Using the concepts of Single Responsibility and Tightly Coupled Objects. In this project, you can create a new Project and inside this project, you can create a task, the task contains a title, description, due date, and priority.
+This project is a Todo-List where you can create a new Project and inside this project, you can create a task, the task contains a title, description, due date, and priority.
+This project was created using the concepts of Single Responsibility, factory functions and, the Module Pattern.
 
 ![screenshot](dist/assets/images/screen-2.PNG)
 
@@ -21,7 +22,7 @@ This project consists in build a Todo-List. Using the concepts of Single Respons
 - Open your terminal and cd where you want to store the project
 - Run the following command - `git clone https://github.com/mricanho/To-do-list.git`
 - Cd into the directory - `cd To-do-list$`
-- Open the live server on your VScode `Alt + L` then `Alt + o` on `idex.html`
+- Open the live server on your VScode `Alt + L` then `Alt + o` on `index.html`
 
 ## Author
 

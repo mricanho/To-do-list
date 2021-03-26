@@ -135,11 +135,12 @@
             <label class="label">Task title</label>
             <div class="control">
               <input
-                data-title-task
+                data-title-task2
                 class="input"
                 type="text"
                 placeholder="e.g Take my dog for a walk"
                 required
+                id="titleModal"
               />
             </div>
           </div>
@@ -147,7 +148,8 @@
             <label class="label">Description</label>
             <div class="control">
               <input
-                data-description-task
+                data-description-task2
+                id="descriptionModal"
                 class="input"
                 type="text"
                 placeholder="e.g. I need to use the leash this time and took the avenue"
@@ -159,7 +161,8 @@
             <label class="label">Due Date</label>
             <div class="control">
               <input
-                data-date-task
+                id="dateModal"
+                data-date-task2
                 class="input"
                 type="date"
                 placeholder="e.g."
@@ -170,7 +173,8 @@
             <label class="label">Priority</label>
             <div class="control">
               <input
-                data-priority-task
+                id="priorityModal"
+                data-priority-task2
                 class="input"
                 type="number"
                 pattern="/^-?\d+\.?\d*$/"
@@ -185,8 +189,8 @@
           <div class="field">
             <p class="control has-text-centered">
               <button
-                class="button is-success mr-6 form-button"
-                data-submit-task
+                class="button is-success mr-6 form-button submit-task"
+                data-submit-task2
               >
                 Submit
               </button>
@@ -210,7 +214,7 @@
                 class="subtitle has-text-weight-bold pt-4"
                 id="data-list-title"
               >
-                Example project
+                Default Project
               </h2>
               <button class="button is-danger newtask-b" id="newtask-b">
                 Add New Task
@@ -228,6 +232,8 @@
           <p class="card-header-title">
             <input type="checkbox" class="mr-2" />
           </p>
+          <button id="edit" class="button is-danger tryYes mt-2 is-small">Edit</button>
+          <button data-delete-button id="delete-task" class="button is-danger is-inverted delete-task ml-2 mt-2 mr-2 is-small">Delete</button>
         </header>
         <div class="card-content">
           <div class="content is-flex-direction-row">

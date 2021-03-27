@@ -8,6 +8,9 @@ import {
   clickHandler,
   editForm,
   editLogic,
+  deleteForm,
+  deleteLogic,
+  deleteTask,
 } from './logic';
 
 const displayModal = document.getElementById('launch-modal');
@@ -19,6 +22,9 @@ const deleteListButton = document.getElementById('data-delete-list-button');
 const cancelForm = document.getElementById('cancel-form');
 const cancelForm2 = document.getElementById('cancel-form2');
 const newListForm = document.getElementById('data-new-list-form');
+const closeModal3 = document.querySelector('#close-modal3');
+const cancelForm3 = document.getElementById('cancel-form3');
+const deleteModal = document.getElementById('delete-modal');
 
 const listeners = () => {
   openTaskForm.addEventListener('click', () => {
@@ -52,6 +58,24 @@ const listeners = () => {
       taskModal.classList.remove('is-active');
     }
   });
+
+  closeModal3.addEventListener('click', () => {
+    deleteModal.classList.remove('is-active');
+  });
+
+  cancelForm3.addEventListener('click', () => {
+    deleteModal.classList.remove('is-active');
+  });
+
+  document.addEventListener('keydown', ({ key }) => {
+    if (key === 'Escape') {
+      deleteModal.classList.remove('is-active');
+    }
+  });
+
+  deleteForm.addEventListener('click', deleteLogic);
+
+  document.addEventListener('click', deleteTask);
 
   deleteListButton.addEventListener('click', deleteProject);
 

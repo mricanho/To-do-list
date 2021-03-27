@@ -20,11 +20,13 @@ let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
 const taskModal = document.getElementById('task-modal');
 const editForm = document.querySelector('[data-submit-task2]');
-const deleteObject = document.querySelector('[data-delete-button]');
 const titleTask2 = document.querySelector('[data-title-task2]');
 const descriptionTask2 = document.querySelector('[data-description-task2]');
 const dateTask2 = document.querySelector('[data-date-task2]');
 const priorityTask2 = document.querySelector('[data-priority-task2]');
+
+const deleteModal = document.getElementById('delete-modal');
+const deleteForm = document.querySelector('[data-submit-task3]');
 
 const taskManipulation = (task) => {
   const taskElement = document.importNode(taskTemplate.content, true);
@@ -233,6 +235,29 @@ const clickHandler = (e) => {
   }
 };
 
+const deleteLogic = (id) => {
+  console.log(id)
+  deleteModal.classList.remove('is-active');
+  const projectIndex = getProjectIndex(selectedListId);
+  const taskIndex = lists[projectIndex].tasks.findIndex((task) => task.id == id);
+  lists[projectIndex].tasks.splice(taskIndex, 1);
+  const confirmButton = document.getElementById('last-delete');
+  confirmButton.removeEventListener('click', deleteLogic);
+  saveAndRender();
+}
+
+const deleteTask = (e) => {
+  if (e.target.matches('.delete-task')) {
+    deleteModal.classList.add('is-active');
+    const projectIndex = getProjectIndex(selectedListId);
+    const task = lists[projectIndex].tasks.find(
+      task => task.id === e.target.id
+    );
+    const confirmButton = document.getElementById('last-delete');
+    confirmButton.addEventListener('click', deleteLogic(e.target.id));     
+  }
+};
+
 export {
   defaultProject,
   render,
@@ -246,5 +271,7 @@ export {
   defaultTask,
   editForm,
   editLogic,
-  deleteObject,
+  deleteTask,
+  deleteForm,
+  deleteLogic,
 };

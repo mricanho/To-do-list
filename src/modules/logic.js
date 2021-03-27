@@ -250,7 +250,7 @@ const clickHandler = (e) => {
     taskModal.classList.add('is-active');
     const projectIndex = getProjectIndex(selectedListId);
     const task = lists[projectIndex].tasks.find(
-      task => task.id === e.target.id,
+      (task) => task.id === e.target.id,
     );
     const title = document.getElementById('titleModal');
     const description = document.getElementById('descriptionModal');

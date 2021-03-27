@@ -186,17 +186,16 @@ const editLogic = (e) => {
   saveAndRender();
 };
 
-const deleteLogic = (e) => {
-  e.preventDefault();
+const deleteLogic = (id) => {
+  console.log(id)
   deleteModal.classList.remove('is-active');
   const projectIndex = getProjectIndex(selectedListId);
-  const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id == e.target.id);
+  const taskIndex = lists[projectIndex].tasks.findIndex((task) => task.id == id);
   lists[projectIndex].tasks.splice(taskIndex, 1);
-  console.log(e.target.id);
+  const confirmButton = document.getElementById('last-delete');
+  confirmButton.removeEventListener('click', deleteLogic);
   saveAndRender();
 }
-
-
 
 const createList = (name) => ({
   id: Date.now().toString(),
@@ -244,7 +243,9 @@ const deleteTask = (e) => {
     const projectIndex = getProjectIndex(selectedListId);
     const task = lists[projectIndex].tasks.find(
       task => task.id === e.target.id
-    )
+    );
+    const confirmButton = document.getElementById('last-delete');
+    confirmButton.addEventListener('click', deleteLogic(e.target.id));     
   }
 };
 

@@ -236,25 +236,20 @@ const clickHandler = (e) => {
 };
 
 const deleteLogic = (id) => {
-  console.log(id)
   deleteModal.classList.remove('is-active');
   const projectIndex = getProjectIndex(selectedListId);
-  const taskIndex = lists[projectIndex].tasks.findIndex((task) => task.id == id);
+  const taskIndex = lists[projectIndex].tasks.findIndex((task) => task.id === id);
   lists[projectIndex].tasks.splice(taskIndex, 1);
   const confirmButton = document.getElementById('last-delete');
   confirmButton.removeEventListener('click', deleteLogic);
   saveAndRender();
-}
+};
 
 const deleteTask = (e) => {
   if (e.target.matches('.delete-task')) {
     deleteModal.classList.add('is-active');
-    const projectIndex = getProjectIndex(selectedListId);
-    const task = lists[projectIndex].tasks.find(
-      task => task.id === e.target.id
-    );
     const confirmButton = document.getElementById('last-delete');
-    confirmButton.addEventListener('click', deleteLogic(e.target.id));     
+    confirmButton.addEventListener('click', deleteLogic(e.target.id));
   }
 };
 

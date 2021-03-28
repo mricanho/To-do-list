@@ -1,15 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css" integrity="sha512-byErQdWdTqREz6DLAA9pCnLbdoGGhXfU6gm1c8bkf7F51JVmUBlayGe2A31VpXWQP+eiJ3ilTAZHCR3vmMyybA==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="assets/style/style.css">
-  <title>To-Do List</title>
-</head>
-<body>
-  <div id="content"></div>
-<script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css"
+      integrity="sha512-byErQdWdTqREz6DLAA9pCnLbdoGGhXfU6gm1c8bkf7F51JVmUBlayGe2A31VpXWQP+eiJ3ilTAZHCR3vmMyybA=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/style/style.css" />
+    <script
+      src="https://kit.fontawesome.com/61f458d584.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">
+          <img src="./assets/images/todo.png" alt="to-do logo" height="100" />
+        </a>
+      </div>
+    </nav>
+    <div class="g-container columns m-0">
+      <section class="section column is-one-third project-container pt-6 pl-6">
+        <div class="container pt-6">
+          <h1 class="title mt-6 pt-6 mb-1">My Projects</h1>
+          <hr />
+          <ul id="data-lists"></ul>
+        </div>
+        <form class="field has-addons mt-4" id="data-new-list-form" action="">
+          <div class="control input1">
+            <input
+              class="input"
+              type="text"
+              placeholder="Add a new project"
+              id="data-new-list-input"
+            />
+          </div>
+          <div class="control">
+            <button class="button is-danger" type="button">+</button>
+          </div>
+        </form>
+      </section>
+      <div class="modal" id="launch-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+          <div class="field">
+            <label class="label">Task title</label>
+            <div class="control">
+              <input
+                data-title-task
+                class="input"
+                type="text"
+                placeholder="e.g Take my dog for a walk"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <input
+                data-description-task
+                class="input"
+                type="text"
+                placeholder="e.g. I need to use the leash this time and took the avenue"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Due Date</label>
+            <div class="control">
+              <input
+                data-date-task
+                class="input"
+                type="date"
+                placeholder="e.g."
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Priority</label>
+            <div class="control">
+              <input
+                data-priority-task
+                class="input"
+                type="number"
+                pattern="/^-?\d+\.?\d*$/"
+                onKeyPress="if(this.value.length==1) return false;"
+                min="0"
+                max="9"
+                name="Priority"
+                placeholder="Priority (0 to 9)"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <p class="control has-text-centered">
+              <button
+                class="button is-success mr-6 form-button"
+                data-submit-task
+              >
+                Submit
+              </button>
+              <button class="button is-danger form-button" id="cancel-form">
+                Cancel
+              </button>
+            </p>
+          </div>
+        </div>
+        <button
+          class="modal-close is-large"
+          aria-label="close"
+          id="close-modal"
+        ></button>
+      </div>
+      <div class="modal" id="task-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+          <div class="field">
+            <label class="label">Task title</label>
+            <div class="control">
+              <input
+                data-title-task2
+                class="input"
+                type="text"
+                placeholder="e.g Take my dog for a walk"
+                required
+                id="titleModal"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <input
+                data-description-task2
+                id="descriptionModal"
+                class="input"
+                type="text"
+                placeholder="e.g. I need to use the leash this time and took the avenue"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Due Date</label>
+            <div class="control">
+              <input
+                id="dateModal"
+                data-date-task2
+                class="input"
+                type="date"
+                placeholder="e.g."
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Priority</label>
+            <div class="control">
+              <input
+                id="priorityModal"
+                data-priority-task2
+                class="input"
+                type="number"
+                pattern="/^-?\d+\.?\d*$/"
+                onKeyPress="if(this.value.length==1) return false;"
+                min="0"
+                max="9"
+                name="Priority"
+                placeholder="Priority (0 to 9)"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <p class="control has-text-centered">
+              <button
+                class="button is-success mr-6 form-button submit-task"
+                data-submit-task2
+              >
+                Submit
+              </button>
+              <button class="button is-danger form-button" id="cancel-form2">
+                Cancel
+              </button>
+            </p>
+          </div>
+        </div>
+        <button
+          class="modal-close is-large"
+          aria-label="close"
+          id="close-modal2"
+        ></button>
+      </div>
+      <div class="modal" id="delete-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+          <div class="mb-6 has-text-centered">
+            <p class="title">Are you sure?</p>
+          </div>
+          <div class="field">
+            <p class="control has-text-centered">
+              <button
+                class="button is-success mr-6 form-button submit-delete"
+                data-submit-task3
+                id="last-delete"
+              >
+                Delete
+              </button>
+              <button class="button is-danger form-button" id="cancel-form3">
+                Cancel
+              </button>
+            </p>
+          </div>
+        </div>
+        <button
+          class="modal-close is-large"
+          aria-label="close"
+          id="close-modal3"
+        ></button>
+      </div>
+      <section class="section column tasks-container">
+        <div class="next-container">
+          <div class="container mt-6 pl-6 box" id="data-list-display-container">
+            <div class="header-task">
+              <h2
+                class="subtitle has-text-weight-bold pt-4"
+                id="data-list-title"
+              >
+                Default Project
+              </h2>
+              <div class="div-but">
+                <button class="button is-danger newtask-b" id="newtask-b">
+                  Add New Task
+                </button>
+                <button
+                    class="button is-danger newtask-b"
+                    id="data-delete-list-button"
+                  >
+                    Delete this project
+                </button>
+                </div">
+              </div>
+            </div>
+            <hr />
+            <ul class="" id="data-tasks"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+    <template id="task-template">
+      <div class="card task mb-6">
+        <header class="card-header ancher">
+          <p class="card-header-title">
+            <input type="checkbox" class="mr-2" />
+          </p>
+          <button id="edit" class="button is-danger tryYes mt-2 is-small">
+            Edit
+          </button>
+          <button data-delete-button id="delete-task" class="button is-danger delete-task ml-2 mt-2 mr-2 is-small">Delete</button>
+        </header>
+        <div class="card-content">
+          <div class="content is-flex-direction-row">
+            <p id="description"></p>
+            <time datetime="2016-1-1" id="date-task"></time>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <p class="card-footer-item a-card" id="low" data-low>Priority:</p>
+          <p
+            class="card-footer-item a-card has-text-weight-bold"
+            id="final-priority"
+          ></p>
+        </footer>
+      </div>
+    </template>
+    <script src="main.js"></script>
+  </body>
 </html>

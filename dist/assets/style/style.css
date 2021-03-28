@@ -1,0 +1,69 @@
+html {
+  background-color: #f6d4cc;
+  height: 100vh;
+}
+
+hr {
+  margin-top: 0px;
+}
+
+.header-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.div-but {
+  display: flex;
+  justify-content: flex-end;
+  width: 30em;
+}
+
+.button {
+  margin: 0 1em;
+}
+
+.newtask-b {
+  width: 30%;
+}
+
+.tasks-container {
+  background-color: #e1684e;
+  height: 100%;
+}
+
+.next-container {
+  background-color: #e1684e;
+  height: 100vh;
+}
+
+.subtitle {
+  cursor: pointer;
+}
+
+.active-list {
+  font-weight: 800;
+}
+
+.delete {
+  vertical-align: middle;
+  margin-right: 400px;
+}
+
+.input1,
+.button-container {
+  width: 100%;
+  display: flex;
+}
+
+.dbutton {
+  margin-left: auto;
+}
+
+.a-card {
+  color: #e1684e;
+}
+
+.form-button {
+  width: 20vh;
+}

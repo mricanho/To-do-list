@@ -1,1 +1,4 @@
-import listeners from '../modules/listeners';
+it('should work', () => {
+  const thisIsTrue = true;
+  expect(thisIsTrue).toBe(true);
+});

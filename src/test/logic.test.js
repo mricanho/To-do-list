@@ -1,4 +1,5 @@
 const { createTask } = require("../modules/logic");
+const { createList } = require("../modules/logic");
 import jsdom from "jsdom";
 const { JSDOM } = jsdom;
 
@@ -41,15 +42,54 @@ describe("MODULE RETRIEVE PROJECTS TEST", () => {
 });
 
 describe("create task", () => {
-  it("do something", () => {
+  it("Create a new task", () => {
     const idNumber = Date.now().toString();
-    const create = createTask("Firt", "first task", "2021-04-22", 5);
+    const create = createTask(
+      "Firt task",
+      "first task description",
+      "2021-04-22",
+      5
+    );
     expect(create).toEqual({
       id: idNumber,
       date: "2021-04-22",
-      description: "first task",
-      name: "Firt",
+      description: "first task description",
+      name: "Firt task",
       priority: 5,
+    });
+  });
+
+  it("If no input throws undefined", () => {
+    const idNumber = Date.now().toString();
+    const create = createTask();
+    expect(create).toEqual({
+      id: idNumber,
+      date: undefined,
+      description: undefined,
+      name: undefined,
+      priority: undefined,
+    });
+  });
+});
+
+describe("create project", () => {
+  it("Create a new project", () => {
+    const idNumber = Date.now().toString();
+    const create = createList("Firt project");
+    expect(create).toEqual({
+      id: idNumber,
+      name: "Firt project",
+      tasks: [],
+    });
+  });
+
+  it("If no input throws undefined", () => {
+    const idNumber = Date.now().toString();
+    const create = createList();
+    expect(create).toEqual({
+      id: idNumber,
+      name: undefined,
+      tasks: [],
     });
   });
 });

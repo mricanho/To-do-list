@@ -264,6 +264,7 @@ const clickHandler = (e) => {
 };
 
 export {
+  createList,
   createTask,
   defaultProject,
   render,

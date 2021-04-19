@@ -24,6 +24,11 @@ This project was created using the concepts of Single Responsibility, factory fu
 - Cd into the directory - `cd To-do-list$`
 - Open the live server on your VScode `Alt + L` then `Alt + o` on `index.html`
 
+## How to run the tests
+
+- Open your terminal and cd into the directory - `cd To-do-list$`
+- Run the following command - `npm test`
+
 ## Author
 
 👤 **Brian Cruz**

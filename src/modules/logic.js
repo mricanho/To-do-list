@@ -29,7 +29,6 @@ const priorityTask2 = document.querySelector('[data-priority-task2]');
 const deleteModal = document.getElementById('delete-modal');
 const deleteForm = document.querySelector('[data-submit-task3]');
 
-
 const taskManipulation = (task) => {
   const taskElement = document.importNode(taskTemplate.content, true);
   const listElement = document.createElement('li');
@@ -66,9 +65,7 @@ const renderTasks = (selectedList) => {
   });
 };
 
-
 // CHANGE HERE
-
 
 const showRender = () => {
   const selectedList = lists.find((list) => list.id === selectedListId);
@@ -81,7 +78,6 @@ const showRender = () => {
     renderTasks(selectedList);
   }
 };
-
 
 // CHANGE HERE
 
@@ -178,7 +174,9 @@ const editLogic = (e) => {
   priorityTask2.value = null;
   taskModal.classList.remove('is-active');
   const projectIndex = getProjectIndex(selectedListId);
-  const taskIndex = lists[projectIndex].tasks.findIndex((pj) => pj.id === e.target.id);
+  const taskIndex = lists[projectIndex].tasks.findIndex(
+    (pj) => pj.id === e.target.id,
+  );
   const selectedList = lists.find((list) => list.id === selectedListId);
 
   lists[projectIndex].tasks.splice(taskIndex, 1);
@@ -190,7 +188,9 @@ const editLogic = (e) => {
 const deleteLogic = (id) => {
   deleteModal.classList.remove('is-active');
   const projectIndex = getProjectIndex(selectedListId);
-  const taskIndex = lists[projectIndex].tasks.findIndex((task) => task.id === id);
+  const taskIndex = lists[projectIndex].tasks.findIndex(
+    (task) => task.id === id,
+  );
   lists[projectIndex].tasks.splice(taskIndex, 1);
   const confirmButton = document.getElementById('last-delete');
   confirmButton.removeEventListener('click', deleteLogic);
@@ -264,6 +264,8 @@ const clickHandler = (e) => {
 };
 
 export {
+  createList,
+  createTask,
   defaultProject,
   render,
   selectListContainer,
